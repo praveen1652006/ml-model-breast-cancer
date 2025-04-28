@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breast Cancer Detection</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .form-label {
+      font-weight: bold;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .prediction-result {
+      margin-top: 20px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #28a745;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="text-center">Breast Cancer Detection</h1>
+
+  <form action="/predict" method="POST">
+    <div class="mb-3">
+      <label for="mean_radius" class="form-label">Mean Radius</label>
+      <input type="number" step="any" name="mean_radius" id="mean_radius" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_texture" class="form-label">Mean Texture</label>
+      <input type="number" step="any" name="mean_texture" id="mean_texture" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_perimeter" class="form-label">Mean Perimeter</label>
+      <input type="number" step="any" name="mean_perimeter" id="mean_perimeter" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_area" class="form-label">Mean Area</label>
+      <input type="number" step="any" name="mean_area" id="mean_area" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_smoothness" class="form-label">Mean Smoothness</label>
+      <input type="number" step="any" name="mean_smoothness" id="mean_smoothness" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_compactness" class="form-label">Mean Compactness</label>
+      <input type="number" step="any" name="mean_compactness" id="mean_compactness" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_concavity" class="form-label">Mean Concavity</label>
+      <input type="number" step="any" name="mean_concavity" id="mean_concavity" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_concave_points" class="form-label">Mean Concave Points</label>
+      <input type="number" step="any" name="mean_concave_points" id="mean_concave_points" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_symmetry" class="form-label">Mean Symmetry</label>
+      <input type="number" step="any" name="mean_symmetry" id="mean_symmetry" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="mean_fractal_dimension" class="form-label">Mean Fractal Dimension</label>
+      <input type="number" step="any" name="mean_fractal_dimension" id="mean_fractal_dimension" class="form-control" required>
+    </div>
+
+    <!-- Add more fields for the remaining features -->
+    <div class="mb-3">
+      <label for="radius_error" class="form-label">Radius Error</label>
+      <input type="number" step="any" name="radius_error" id="radius_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="texture_error" class="form-label">Texture Error</label>
+      <input type="number" step="any" name="texture_error" id="texture_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="perimeter_error" class="form-label">Perimeter Error</label>
+      <input type="number" step="any" name="perimeter_error" id="perimeter_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="area_error" class="form-label">Area Error</label>
+      <input type="number" step="any" name="area_error" id="area_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="smoothness_error" class="form-label">Smoothness Error</label>
+      <input type="number" step="any" name="smoothness_error" id="smoothness_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="compactness_error" class="form-label">Compactness Error</label>
+      <input type="number" step="any" name="compactness_error" id="compactness_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="concavity_error" class="form-label">Concavity Error</label>
+      <input type="number" step="any" name="concavity_error" id="concavity_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="concave_points_error" class="form-label">Concave Points Error</label>
+      <input type="number" step="any" name="concave_points_error" id="concave_points_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="symmetry_error" class="form-label">Symmetry Error</label>
+      <input type="number" step="any" name="symmetry_error" id="symmetry_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="fractal_dimension_error" class="form-label">Fractal Dimension Error</label>
+      <input type="number" step="any" name="fractal_dimension_error" id="fractal_dimension_error" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_radius" class="form-label">Worst Radius</label>
+      <input type="number" step="any" name="worst_radius" id="worst_radius" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_texture" class="form-label">Worst Texture</label>
+      <input type="number" step="any" name="worst_texture" id="worst_texture" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_perimeter" class="form-label">Worst Perimeter</label>
+      <input type="number" step="any" name="worst_perimeter" id="worst_perimeter" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_area" class="form-label">Worst Area</label>
+      <input type="number" step="any" name="worst_area" id="worst_area" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_smoothness" class="form-label">Worst Smoothness</label>
+      <input type="number" step="any" name="worst_smoothness" id="worst_smoothness" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_compactness" class="form-label">Worst Compactness</label>
+      <input type="number" step="any" name="worst_compactness" id="worst_compactness" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_concavity" class="form-label">Worst Concavity</label>
+      <input type="number" step="any" name="worst_concavity" id="worst_concavity" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_concave_points" class="form-label">Worst Concave Points</label>
+      <input type="number" step="any" name="worst_concave_points" id="worst_concave_points" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_symmetry" class="form-label">Worst Symmetry</label>
+      <input type="number" step="any" name="worst_symmetry" id="worst_symmetry" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="worst_fractal_dimension" class="form-label">Worst Fractal Dimension</label>
+      <input type="number" step="any" name="worst_fractal_dimension" id="worst_fractal_dimension" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Predict Tumor Type</button>
+  </form>
+
+  <!-- Prediction result display -->
+  <div class="prediction-result">
+    <p>{{ prediction_text }}</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
