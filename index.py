@@ -6,8 +6,8 @@ import joblib
 app = Flask(__name__)
 
 # Load the trained model and scaler
-model = joblib.load('../models/xgboost_model.pkl')  # Make sure this path is correct
-scaler = joblib.load('../models/scaler.pkl')  # Same here, correct the path if needed
+model = joblib.load('models/xgboost_model.pkl')  # Make sure this path is correct
+scaler = joblib.load('models/scaler.pkl')  # Same here, correct the path if needed
 
 
 @app.route('/')
